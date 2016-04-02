@@ -1,0 +1,122 @@
+/******************************************************************************
+*                                                                             *
+*    GeoIPDownloader.rc                     Copyright(c) 2010-2016 itow,y.    *
+*                                                                             *
+******************************************************************************/
+
+/*
+  Connection Viewer
+  Copyright(c) 2010-2016 itow,y.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+
+#include <windows.h>
+#include <commctrl.h>
+#include "resource.h"
+
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+
+
+IDI_ICON ICON "GeoIPDownloader.ico"
+
+IDD_MAIN DIALOG 0, 0, 224, 84
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "GeoIP Downloader"
+FONT 9, "メイリオ"
+BEGIN
+	DEFPUSHBUTTON "ダウンロード", IDOK, 100, 64, 56, 12
+	PUSHBUTTON "終了", IDCANCEL, 160, 64, 56, 12
+	LTEXT "URL:", -1, 8, 9, 16, 8
+	COMBOBOX IDC_MAIN_URL, 28, 8, 188, 80, CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL
+	AUTOCHECKBOX "プロキシを使用する:", IDC_MAIN_USE_PROXY, 8, 26, 76, 8
+	EDITTEXT IDC_MAIN_PROXY, 88, 24, 80, 12, ES_AUTOHSCROLL
+	LTEXT "", IDC_MAIN_INFO, 8, 40, 208, 9, SS_SUNKEN
+	CONTROL "", IDC_MAIN_PROGRESS, PROGRESS_CLASS, WS_CHILD | WS_VISIBLE, 8, 50, 208, 8
+END
+
+STRINGTABLE
+BEGIN
+	IDS_ERROR_CONNECT		"インターネットに接続できません。"
+	IDS_ERROR_OPEN_INTERNET	"接続の初期化でエラーが発生しました。"
+	IDS_ERROR_OPEN_URL		"URLを開けません。"
+	IDS_ERROR_QUERY_SIZE	"ファイルのサイズを取得できません。"
+	IDS_ERROR_MEMORY_ALLOC	"メモリを確保できません。"
+	IDS_ERROR_FILE_CREATE	"ファイルを作成できません。"
+	IDS_ERROR_FILE_OPEN		"ファイルを開けません。"
+	IDS_ERROR_FILE_READ		"ファイルを読み取れません。"
+	IDS_ERROR_FILE_WRITE	"ファイルへの書き出しができません。"
+	IDS_ERROR_DECOMPRESS	"解凍でエラーが発生しました。"
+	IDS_ERROR_REPLACE_FILE	"新しいファイルに置き換えできません。"
+
+	IDS_ABORT				"中止"
+	IDS_DOWNLOAD			"ダウンロード"
+
+	IDS_OPENING				"オープン中..."
+	IDS_CONNECTING			"接続中..."
+	IDS_DOWNLOADING			"ダウンロード中..."
+	IDS_DOWNLOADED			"ファイルをダウンロードしました"
+	IDS_DECOMPRESSING		"解凍中..."
+	IDS_DECOMPRESSED		"ファイルを解凍しました"
+	IDS_DOWNLOAD_ABORTED	"ダウンロードを中止しました"
+
+	IDS_URL_NO_FILE_NAME	"URL にファイル名が含まれていません。"
+	IDS_CONFIRM_DECOMPRESS	"ダウンロードしたファイルを解凍しますか?"
+	IDS_CONFIRM_DECOMPRESS_CAPTION	"解凍の確認"
+	IDS_NOT_GZ_FILE			"拡張子が .gz でないため解凍は行いません。"
+	IDS_NOT_GZ_FILE_CAPTION	"お知らせ"
+END
+
+1 VERSIONINFO
+ FILEVERSION 0, 1, 0, 0
+ PRODUCTVERSION 0, 1, 0, 0
+ FILEFLAGSMASK 0x3FL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "041104B0"
+		BEGIN
+			VALUE "Comments", "GeoIP Downloader\0"
+			VALUE "CompanyName", "itow,y.\0"
+			VALUE "FileDescription", "GeoIP Downloader\0"
+			VALUE "FileVersion", "0.1.0\0"
+			VALUE "InternalName", "GeoIP Downloader\0"
+			VALUE "LegalCopyright", "Copyright(c) 2010-2016 itow,y.\0"
+			VALUE "OriginalFilename", "GeoIPDownloader.exe\0"
+#ifdef _DEBUG
+			VALUE "PrivateBuild", "\0"
+#endif
+			VALUE "ProductName", "GeoIP Downloader\0"
+			VALUE "ProductVersion", "0.1.0\0"
+#ifdef _DEBUG
+			VALUE "SpecialBuild", "\0"
+#endif
+		END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x411, 1200
+	END
+END
